@@ -1,0 +1,5 @@
+  
+- build: examples/display
+  photon: [0.6.3, 0.7.0, 0.8.0-rc.8, 1.2.1, 1.4.2]
+  p1: [latest]
+  electron: [0.6.4, 0.7.0, 0.8.0-rc.8]
