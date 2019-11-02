@@ -7,8 +7,9 @@
 
 ParticleUtilities::ParticleUtilities(boolean serial, boolean point_on_off, TM1637 *displayUnit):   _serial(serial)
 {
+    byte initial[] = {0x0,0x0,0x0,0x0};
     _ListDisp = (byte*) calloc(DISPLAY_SIZE, sizeof(byte));
-    _ListDisp = {0};
+    memcpy(_ListDisp, initial, DISPLAY_SIZE);
     _displayUnit = displayUnit;
     _point_on_off = point_on_off;
     _start_display = false;
@@ -23,6 +24,8 @@ void ParticleUtilities::init(void)
 {
   (*_displayUnit).init();
   (*_displayUnit).point(_point_on_off);
+  (*_displayUnit).set(BRIGHT_TYPICAL);//BRIGHT_TYPICAL = 2,BRIGHT_DARKEST = 0,BRIGHTEST = 7;
+
 }
 
 void ParticleUtilities::display(long value)
@@ -44,7 +47,6 @@ void ParticleUtilities::display(long value)
       (*_displayUnit).display(pos, _ListDisp[pos]);
     }
   }
-
 }
 
 // --------------------------------------------------------------------------------------
